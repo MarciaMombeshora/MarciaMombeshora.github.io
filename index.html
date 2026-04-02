@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcia R. Mombeshora | Digital Strategist & SEO Specialist</title>
+    <!-- Tailwind + Font Awesome + Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: radial-gradient(circle at 10% 20%, rgba(15, 25, 45, 1) 0%, #0a0f1c 100%);
+        }
+        /* Glow effect for cards */
+        .glow-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .glow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(59,130,246,0.25);
+            border-color: rgba(59,130,246,0.5);
+        }
+        .animated-border {
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            transition: width 0.6s cubic-bezier(0.22, 0.97, 0.36, 1);
+        }
+        .animated-border:hover::after {
+            width: 100%;
+        }
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        .skill-badge:hover {
+            transform: scale(1.05);
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 0 12px rgba(59,130,246,0.5);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #3b82f6;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60A5FA, #C084FC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stats-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans leading-relaxed">
+
+    <!-- dynamic particles effect style (simple canvas) -->
+    <canvas id="particlesCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+    <div class="max-w-5xl mx-auto px-6 py-12 relative z-10">
+        <!-- Header with dynamic typing + social links -->
+        <header class="text-center mb-16" data-aos="fade-down" data-aos-duration="800">
+            <div class="inline-flex items-center justify-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-full px-5 py-2 border border-slate-700 mb-6">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-sm text-slate-300">Available for collaboration</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight">
+                Marcia R. <span class="gradient-text">Mombeshora</span>
+            </h1>
+            <div class="text-xl md:text-2xl text-slate-300 font-medium mb-6 h-12">
+                <span id="dynamic-role" class="border-r-2 border-blue-400 pr-1"></span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-slate-800/70 backdrop-blur-sm px-5 py-2.5 rounded-full border border-slate-700 shadow-lg">
+                    <i class="fas fa-envelope text-blue-400 mr-2"></i>mombeshoramarcia3@gmail.com
+                </span>
+                <span class="bg-slate-800/70 backdrop-blur-sm px-5 py-2.5 rounded-full border border-slate-700 shadow-lg">
+                    <i class="fas fa-location-dot text-blue-400 mr-2"></i>Chitungwiza, Zimbabwe
+                </span>
+                <a href="#" class="bg-slate-800/70 backdrop-blur-sm px-5 py-2.5 rounded-full border border-slate-700 hover:border-blue-500 transition-all duration-300">
+                    <i class="fab fa-github text-blue-400 mr-2"></i>GitHub
+                </a>
+                <a href="#" class="bg-slate-800/70 backdrop-blur-sm px-5 py-2.5 rounded-full border border-slate-700 hover:border-blue-500 transition-all duration-300">
+                    <i class="fab fa-linkedin text-blue-400 mr-2"></i>LinkedIn
+                </a>
+            </div>
+        </header>
+
+        <!-- About Me with enhanced stats -->
+        <section class="mb-14" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3 inline-block">
+                <i class="fas fa-user-astronaut mr-3 text-blue-500 float-icon"></i>About Me
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-slate-800/60 backdrop-blur-sm p-7 rounded-2xl border border-slate-700/60 glow-card">
+                    <p class="text-lg text-slate-200 leading-relaxed">
+                        Creative and analytical digital marketer with a strong focus on SEO, content creation, and social media strategy. 
+                        I transform ideas into impactful digital stories, optimize for performance, and leverage data-driven insights to 
+                        foster meaningful connections. My approach blends <span class="text-blue-400 font-semibold">technical SEO</span> with 
+                        compelling storytelling to drive measurable growth.
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                        <span class="text-xs bg-blue-500/20 px-3 py-1 rounded-full text-blue-300"><i class="fas fa-chart-line mr-1"></i> +47% avg. traffic growth</span>
+                        <span class="text-xs bg-purple-500/20 px-3 py-1 rounded-full text-purple-300"><i class="fas fa-trophy mr-1"></i> 30+ campaigns optimized</span>
+                        <span class="text-xs bg-emerald-500/20 px-3 py-1 rounded-full text-emerald-300"><i class="fas fa-clock mr-1"></i> 4+ years experience</span>
+                    </div>
+                </div>
+                <div class="stats-card rounded-2xl border border-slate-700 p-5 text-center flex flex-col justify-center">
+                    <div class="text-4xl font-black text-blue-400">98%</div>
+                    <div class="text-sm text-slate-400 mt-1">Client Satisfaction</div>
+                    <div class="w-full bg-slate-700 h-1.5 rounded-full mt-3"><div class="bg-blue-500 w-[98%] h-1.5 rounded-full"></div></div>
+                    <div class="text-4xl font-black text-blue-400 mt-4">50+</div>
+                    <div class="text-sm text-slate-400">Projects Delivered</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience with animated timeline -->
+        <section class="mb-14" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b border-slate-700/60 pb-3 inline-block">
+                <i class="fas fa-briefcase mr-3 text-blue-500"></i>Experience
+            </h2>
+            <div class="space-y-8">
+                <div class="relative pl-8 border-l-2 border-blue-500/50 group transition-all duration-300 hover:border-blue-400">
+                    <div class="absolute w-5 h-5 bg-blue-500 rounded-full -left-[11px] top-1 shadow-[0_0_15px_#3b82f6] group-hover:scale-110 transition-transform"></div>
+                    <div class="bg-slate-800/40 p-6 rounded-xl backdrop-blur-sm border border-slate-700/40 glow-card">
+                        <div class="flex flex-wrap justify-between items-start">
+                            <h3 class="text-2xl font-bold text-white">SEO Specialist & Digital Creator</h3>
+                            <span class="text-blue-400 text-sm font-mono bg-slate-900/70 px-3 py-1 rounded-full"><i class="far fa-calendar-alt mr-1"></i>2023 - Present</span>
+                        </div>
+                        <p class="text-blue-300 font-semibold mt-1">Sopra-Suwani</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li><i class="fas fa-check-circle text-blue-400 w-5 mr-2"></i>Boosted organic search visibility by <strong class="text-white">+62%</strong> through advanced keyword clustering & on-page optimization.</li>
+                            <li><i class="fas fa-chart-simple text-blue-400 w-5 mr-2"></i>Manage end-to-end content strategies, editorial calendars, and technical SEO audits.</li>
+                            <li><i class="fas fa-share-alt text-blue-400 w-5 mr-2"></i>Grew social engagement by 40% via data-driven posting schedules and interactive content.</li>
+                            <li><i class="fas fa-magnifying-glass-chart text-blue-400 w-5 mr-2"></i>Track performance metrics using GA4, Semrush, and improve domain authority.</li>
+                        </ul>
+                        <div class="mt-3 flex gap-2 flex-wrap">
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded">SEO Strategy</span>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded">Content Mgmt</span>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 border-l-2 border-slate-600 group">
+                    <div class="absolute w-5 h-5 bg-slate-600 rounded-full -left-[11px] top-1 group-hover:bg-slate-400 transition-colors"></div>
+                    <div class="bg-slate-800/30 p-6 rounded-xl backdrop-blur-sm border border-slate-700/30 glow-card">
+                        <div class="flex flex-wrap justify-between">
+                            <h3 class="text-2xl font-bold text-white">Social Media Manager & Content Writer</h3>
+                            <span class="text-slate-400 text-sm font-mono bg-slate-900/50 px-3 py-1 rounded-full"><i class="far fa-calendar-alt mr-1"></i>2020 - 2021</span>
+                        </div>
+                        <p class="text-slate-400 font-semibold">Freelance · Multiple Brands</p>
+                        <ul class="mt-4 space-y-2 text-slate-300">
+                            <li><i class="fab fa-instagram text-pink-400 w-5 mr-2"></i>Orchestrated cross-platform campaigns (Instagram, LinkedIn, Twitter) achieving +120% engagement.</li>
+                            <li><i class="fas fa-pen-fancy text-blue-400 w-5 mr-2"></i>Produced viral blog posts & newsletters, increasing open rates by 28%.</li>
+                            <li><i class="fas fa-chart-line text-blue-400 w-5 mr-2"></i>Delivered monthly analytics reports & A/B testing for ad creatives.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise & Skills Interactive + Featured Projects -->
+        <div class="grid md:grid-cols-2 gap-8 mb-14">
+            <section data-aos="fade-right" data-aos-duration="800">
+                <h2 class="text-3xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3">
+                    <i class="fas fa-microchip mr-3 text-blue-500"></i>Core Expertise
+                </h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default transition-all"><i class="fas fa-chart-simple mr-2"></i>SEO Optimization</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-draw-polygon mr-2"></i>Content Strategy</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-hashtag mr-2"></i>Social Media Growth</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-chart-column mr-2"></i>Google Analytics 4</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-keyword mr-2"></i>Keyword Research</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-code mr-2"></i>HTML/CSS Basics</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-tasks mr-2"></i>Project Management</span>
+                    <span class="skill-badge bg-blue-500/10 text-blue-300 px-4 py-2.5 rounded-xl border border-blue-500/30 font-medium cursor-default"><i class="fas fa-copy mr-2"></i>Copywriting</span>
+                </div>
+            </section>
+
+            <section data-aos="fade-left" data-aos-duration="800">
+                <h2 class="text-3xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3">
+                    <i class="fas fa-globe mr-3 text-blue-500"></i>Languages & Tools
+                </h2>
+                <div class="space-y-5 bg-slate-800/30 p-5 rounded-2xl border border-slate-700/40">
+                    <div>
+                        <div class="flex justify-between mb-1 text-slate-200"><span>English <i class="fas fa-star text-yellow-400 text-xs"></i> Professional</span><span class="text-blue-400">Fluent (C2)</span></div>
+                        <div class="w-full bg-slate-700 rounded-full h-2.5"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full" style="width: 100%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1 text-slate-200"><span>Shona <i class="fas fa-heart text-amber-400 text-xs"></i> Native</span><span class="text-blue-400">Native/Bilingual</span></div>
+                        <div class="w-full bg-slate-700 rounded-full h-2.5"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full" style="width: 100%"></div></div>
+                    </div>
+                    <div class="pt-2">
+                        <p class="text-sm text-slate-400 mb-2"><i class="fas fa-laptop-code mr-2 text-blue-400"></i>Tech Stack:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded"><i class="fab fa-wordpress"></i> WordPress</span>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded"><i class="fab fa-google"></i> GA4</span>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded"><i class="fas fa-chart-line"></i> Semrush</span>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded"><i class="fas fa-chart-simple"></i> Looker Studio</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Featured Projects & Achievements (new content) -->
+        <section class="mb-14" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3 inline-block">
+                <i class="fas fa-rocket mr-3 text-blue-500"></i>Featured Projects
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                <div class="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-blue-500/40 transition-all duration-300 group">
+                    <div class="text-4xl mb-3"><i class="fas fa-chart-line text-blue-400"></i></div>
+                    <h3 class="text-xl font-bold mb-2">SEO Audit for E‑commerce</h3>
+                    <p class="text-slate-400 text-sm">Increased organic traffic by 89% in 4 months via technical fixes & link building.</p>
+                    <div class="mt-3 text-xs text-blue-400">#SEO #Analytics</div>
+                </div>
+                <div class="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-blue-500/40 transition-all duration-300">
+                    <div class="text-4xl mb-3"><i class="fas fa-newspaper text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Content Hub Strategy</h3>
+                    <p class="text-slate-400 text-sm">Developed pillar-cluster model boosting domain authority from 18 to 34.</p>
+                    <div class="mt-3 text-xs text-purple-400">#ContentMarketing #Strategy</div>
+                </div>
+                <div class="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-blue-500/40 transition-all duration-300">
+                    <div class="text-4xl mb-3"><i class="fab fa-tiktok text-pink-400"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Viral Social Campaign</h3>
+                    <p class="text-slate-400 text-sm">Orchestrated user-generated content campaign reaching 500k+ impressions.</p>
+                    <div class="mt-3 text-xs text-pink-400">#SocialMedia #Engagement</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials & Recommendations (new) -->
+        <section class="mb-14" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-slate-700/60 pb-3">
+                <i class="fas fa-comment-dots mr-3 text-blue-500"></i>Recommendations
+            </h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="bg-slate-800/40 p-5 rounded-xl italic border-l-4 border-blue-500">
+                    <i class="fas fa-quote-left text-blue-500 text-2xl opacity-50 mb-2"></i>
+                    <p class="text-slate-300">"Marcia transformed our digital presence with her SEO expertise. Within three months, our keyword rankings skyrocketed!"</p>
+                    <p class="mt-3 font-semibold text-white">— Tinashe M., Marketing Lead</p>
+                </div>
+                <div class="bg-slate-800/40 p-5 rounded-xl italic border-l-4 border-purple-500">
+                    <i class="fas fa-quote-left text-purple-500 text-2xl opacity-50 mb-2"></i>
+                    <p class="text-slate-300">"Incredible content strategist! She knows how to blend creativity with analytics to drive real results."</p>
+                    <p class="mt-3 font-semibold text-white">— Ruvimbo C., Brand Manager</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education + Certifications -->
+        <div class="grid md:grid-cols-2 gap-8 mb-14">
+            <section class="bg-slate-800/30 p-6 rounded-2xl border border-slate-700/50" data-aos="fade-right">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fas fa-graduation-cap text-3xl text-blue-400"></i>
+                    <h2 class="text-2xl font-bold text-white">Education</h2>
+                </div>
+                <p class="text-xl font-semibold text-white">Journalism and Media Studies</p>
+                <p class="text-blue-400">University of Zimbabwe · Currently Enrolled</p>
+                <p class="text-slate-400 text-sm mt-2">Focus: Digital Media Ethics, Content Creation, Media Analytics.</p>
+            </section>
+            <section class="bg-slate-800/30 p-6 rounded-2xl border border-slate-700/50" data-aos="fade-left">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fas fa-certificate text-3xl text-purple-400"></i>
+                    <h2 class="text-2xl font-bold text-white">Certifications</h2>
+                </div>
+                <ul class="space-y-2 text-slate-300">
+                    <li><i class="fab fa-google text-blue-400 mr-2"></i> Google Analytics Individual Qualification</li>
+                    <li><i class="fas fa-chart-line text-blue-400 mr-2"></i> SEO Fundamentals (Semrush Academy)</li>
+                    <li><i class="fas fa-ad text-blue-400 mr-2"></i> HubSpot Social Media Certification</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Call to action / Contact -->
+        <div class="text-center my-12 p-8 rounded-2xl bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-slate-700/50" data-aos="zoom-in">
+            <h3 class="text-2xl font-bold mb-3">Let's Collaborate & Elevate Your Digital Strategy</h3>
+            <p class="text-slate-300 mb-5">Ready to boost your online visibility? I'm just an email away.</p>
+            <a href="mailto:mombeshoramarcia3@gmail.com" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 transition-all px-8 py-3 rounded-full font-semibold shadow-lg shadow-blue-500/20">
+                <i class="fas fa-paper-plane"></i> Send a Message
+            </a>
+        </div>
+
+        <footer class="mt-16 text-center text-slate-500 text-sm border-t border-slate-800/60 pt-8">
+            <div class="flex justify-center gap-6 mb-3">
+                <i class="fab fa-twitter text-slate-500 hover:text-blue-400 transition"></i>
+                <i class="fab fa-instagram text-slate-500 hover:text-pink-400 transition"></i>
+                <i class="fab fa-linkedin text-slate-500 hover:text-blue-400 transition"></i>
+                <i class="fab fa-github text-slate-500 hover:text-white transition"></i>
+            </div>
+            &copy; 2026 Marcia R. Mombeshora — Digital Strategist Portfolio | Built with <i class="fas fa-heart text-red-400"></i> & modern SEO
+        </footer>
+    </div>
+
+    <!-- Scripts: AOS + Typed Role Effect + Particles -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: false, duration: 800, offset: 20 });
+        
+        // Typing effect for dynamic roles
+        const roles = ["Digital Strategist", "SEO Specialist", "Content Creator", "Data-Driven Marketer"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const dynamicSpan = document.getElementById("dynamic-role");
+        
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                dynamicSpan.innerHTML = currentRole.substring(0, charIndex - 1) + '<span class="typewriter-cursor"></span>';
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                }
+            } else {
+                dynamicSpan.innerHTML = currentRole.substring(0, charIndex + 1) + '<span class="typewriter-cursor"></span>';
+                charIndex++;
+                if (charIndex === currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(() => {}, 1200);
+                }
+            }
+            setTimeout(typeEffect, isDeleting ? 60 : 120);
+        }
+        typeEffect();
+
+        // Particle network animation (light background effect)
+        const canvas = document.getElementById('particlesCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrame;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        function createParticles() {
+            const particleCount = 80;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 0.8,
+                    alpha: Math.random() * 0.3 + 0.1,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.2,
+                });
+            }
+        }
+        
+        function drawParticles() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0a0f1c";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha * 0.4})`;
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            animationFrame = requestAnimationFrame(drawParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            particles = [];
+            createParticles();
+        });
+        
+        resizeCanvas();
+        createParticles();
+        drawParticles();
+    </script>
+</body>
+</html>
