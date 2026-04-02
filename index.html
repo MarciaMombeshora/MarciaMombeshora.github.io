@@ -342,6 +342,7 @@
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
+        let delayTimeout = null;
         const dynamicSpan = document.getElementById("dynamic-role");
         
         function typeEffect() {
@@ -353,15 +354,20 @@
                     isDeleting = false;
                     roleIndex = (roleIndex + 1) % roles.length;
                 }
+                setTimeout(typeEffect, 60);
             } else {
                 dynamicSpan.innerHTML = currentRole.substring(0, charIndex + 1) + '<span class="typewriter-cursor"></span>';
                 charIndex++;
                 if (charIndex === currentRole.length) {
                     isDeleting = true;
-                    setTimeout(() => {}, 1200);
+                    // Wait 3 seconds before starting to delete
+                    setTimeout(() => {
+                        typeEffect();
+                    }, 3000);
+                    return; // Exit to avoid calling typeEffect again immediately
                 }
+                setTimeout(typeEffect, 120);
             }
-            setTimeout(typeEffect, isDeleting ? 60 : 120);
         }
         typeEffect();
 
